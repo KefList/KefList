@@ -8,6 +8,9 @@ exports.handler = async function(event) {
     'Authorization': `Bearer ${AIRTABLE_TOKEN}`,
     'Content-Type': 'application/json'
   };
+  console.log('Method:', method);
+  console.log('Token exists:', !!AIRTABLE_TOKEN);
+  console.log('Base ID:', AIRTABLE_BASE_ID);
   try {
     let response;
     if (method === 'GET') {
@@ -16,7 +19,15 @@ exports.handler = async function(event) {
     }
     if (method === 'POST') {
       const body = JSON.parse(event.body);
+      console.log('Sending to Airtable:', JSON.stringify(body));
       response = await fetch(url, { method: 'POST', headers, body: JSON.stringify(body) });
+      const text = await response.text();
+      console.log('Airtable raw response:', text);
+      return {
+        statusCode: response.ok ? 200 : 400,
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        body: text
+      };
     }
     const data = await response.json();
     return {
@@ -25,6 +36,7 @@ exports.handler = async function(event) {
       body: JSON.stringify(data)
     };
   } catch (err) {
+    console.log('Error:', err.message);
     return {
       statusCode: 500,
       headers: { 'Access-Control-Allow-Origin': '*' },
