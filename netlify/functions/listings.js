@@ -18,10 +18,8 @@ exports.handler = async function(event) {
       const rawBody = JSON.parse(event.body);
       // Remove any fields that might cause issues
       const fields = rawBody.fields;
-      delete fields['Long Description'];
-      delete fields['Website'];
-      delete fields['Submitted At'];
-      console.log('Sending fields:', JSON.stringify(fields));
+delete fields['Website'];
+console.log('Sending fields:', JSON.stringify(fields));
       response = await fetch(url, {
         method: 'POST',
         headers,
