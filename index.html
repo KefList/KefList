@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KefList — פעילויות לילדים</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --kef-orange: #FF6B35;
+      --kef-yellow: #FFD23F;
+      --kef-teal: #0A9396;
+      --kef-navy: #1B2A4A;
+      --kef-cream: #FFF8F0;
+      --kef-light: #FFFFFF;
+      --kef-gray: #6B7280;
+      --kef-border: #E5E0D8;
+      --kef-card: #FFFFFF;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --shadow: 0 4px 24px rgba(27,42,74,0.10);
+      --shadow-hover: 0 8px 40px rgba(27,42,74,0.16);
+      --font-main: 'Rubik', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-main);
+      background: var(--kef-cream);
+      color: var(--kef-navy);
+      min-height: 100vh;
+      direction: rtl;
+    }
+
+    body.ltr { direction: ltr; }
+
+    header {
+      background: var(--kef-navy);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 16px rgba(27,42,74,0.18);
+    }
+
+    .logo {
+      font-family: 'Fredoka One', cursive;
+      font-size: 28px;
+      color: var(--kef-yellow);
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .logo span { color: var(--kef-orange); }
+
+    .header-actions { display: flex; align-items: center; gap: 12px; }
+
+    .lang-toggle {
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.25);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-family: var(--font-main);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle:hover { background: rgba(255,255,255,0.22); }
+
+    .btn-submit-header {
+      background: var(--kef-orange);
+      color: white;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-family: var(--font-main);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-submit-header:hover { background: #e55a28; transform: translateY(-1px); }
+
+    .hero {
+      background: linear-gradient(135deg, var(--kef-navy) 0%, #2d4a7a 100%);
+      padding: 64px 24px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 280px; height: 280px;
+      background: var(--kef-orange);
+      opacity: 0.08;
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -40px;
+      width: 320px; height: 320px;
+      background: var(--kef-yellow);
+      opacity: 0.06;
+      border-radius: 50%;
+    }
+
+    .hero-emoji {
+      font-size: 52px;
+      margin-bottom: 16px;
+      display: block;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 6vw, 48px);
+      font-weight: 800;
+      color: white;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .hero h1 .accent { color: var(--kef-yellow); }
+
+    .hero p {
+      font-size: clamp(15px, 3vw, 18px);
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 32px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: var(--kef-orange);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-family: var(--font-main);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 4px 16px rgba(255,107,53,0.4);
+    }
+
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(255,107,53,0.5); }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255,255,255,0.4);
+      padding: 13px 28px;
+      border-radius: 30px;
+      font-family: var(--font-main);
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover { border-color: white; background: rgba(255,255,255,0.1); }
+
+    .city-bar {
+      background: white;
+      border-bottom: 2px solid var(--kef-border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .city-label { font-size: 13px; font-weight: 600; color: var(--kef-gray); white-space: nowrap; flex-shrink: 0; }
+
+    .city-btn {
+      background: var(--kef-cream);
+      border: 1.5px solid var(--kef-border);
+      color: var(--kef-navy);
+      padding: 7px 16px;
+      border-radius: 20px;
+      font-family: var(--font-main);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .city-btn.active { background: var(--kef-navy); border-color: var(--kef-navy); color: white; }
+    .city-btn.coming-soon { opacity: 0.45; cursor: not-allowed; }
+    .city-btn.coming-soon::after { content: ' ✦'; font-size: 10px; }
+
+    .filters-section {
+      background: white;
+      padding: 20px 24px;
+      border-bottom: 2px solid var(--kef-border);
+    }
+
+    .filters-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 12px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .filter-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--kef-gray);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .filter-group select {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1.5px solid var(--kef-border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-main);
+      font-size: 14px;
+      color: var(--kef-navy);
+      background: var(--kef-cream);
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: left 10px center;
+      padding-left: 30px;
+    }
+
+    body.ltr .filter-group select {
+      background-position: right 10px center;
+      padding-left: 12px;
+      padding-right: 30px;
+    }
+
+    .filter-group select:focus { outline: none; border-color: var(--kef-teal); }
+
+    .filters-actions { display: flex; align-items: flex-end; gap: 8px; }
+
+    .btn-filter-clear {
+      padding: 9px 16px;
+      border: 1.5px solid var(--kef-border);
+      background: white;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-main);
+      font-size: 14px;
+      cursor: pointer;
+      color: var(--kef-gray);
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-filter-clear:hover { border-color: var(--kef-orange); color: var(--kef-orange); }
+
+    .main { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+
+    .results-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .results-count { font-size: 15px; color: var(--kef-gray); font-weight: 500; }
+    .results-count strong { color: var(--kef-navy); font-weight: 700; }
+
+    .listings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .listing-card {
+      background: var(--kef-card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.25s;
+      border: 1.5px solid var(--kef-border);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .listing-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: var(--kef-teal); }
+
+    .card-image {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      background: linear-gradient(135deg, #e8f4f8 0%, #d0eae8 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      flex-shrink: 0;
+    }
+
+    .card-body { padding: 16px; flex: 1; display: flex; flex-direction: column; }
+
+    .card-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+
+    .badge { padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+    .badge-category { background: #E8F4F8; color: var(--kef-teal); }
+    .badge-season { background: #FFF3E0; color: #E65100; }
+    .badge-gender { background: #F3E5F5; color: #7B1FA2; }
+
+    .card-title { font-size: 17px; font-weight: 700; color: var(--kef-navy); margin-bottom: 6px; line-height: 1.3; }
+    .card-desc { font-size: 13px; color: var(--kef-gray); line-height: 1.5; flex: 1; margin-bottom: 12px; }
+
+    .card-meta { display: flex; flex-wrap: wrap; gap: 10px; padding-top: 12px; border-top: 1px solid var(--kef-border); }
+    .card-meta-item { font-size: 12px; color: var(--kef-gray); display: flex; align-items: center; gap: 4px; }
+    .card-meta-item .icon { font-size: 14px; }
+    .card-price { margin-top: auto; font-size: 13px; font-weight: 700; color: var(--kef-teal); }
+
+    .empty-state { text-align: center; padding: 80px 24px; color: var(--kef-gray); grid-column: 1 / -1; }
+    .empty-state .emoji { font-size: 56px; margin-bottom: 16px; display: block; }
+    .empty-state h3 { font-size: 20px; font-weight: 700; color: var(--kef-navy); margin-bottom: 8px; }
+
+    .loading { text-align: center; padding: 80px 24px; grid-column: 1 / -1; }
+
+    .spinner {
+      width: 40px; height: 40px;
+      border: 3px solid var(--kef-border);
+      border-top-color: var(--kef-orange);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(27,42,74,0.6);
+      z-index: 200;
+      padding: 20px;
+      overflow-y: auto;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: white;
+      border-radius: var(--radius);
+      max-width: 600px;
+      width: 100%;
+      margin: auto;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(27,42,74,0.25);
+      animation: modalIn 0.25s ease;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, var(--kef-navy), #2d4a7a);
+      padding: 24px;
+      color: white;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px; left: 16px;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: white;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    body.ltr .modal-close { left: auto; right: 16px; }
+    .modal-close:hover { background: rgba(255,255,255,0.25); }
+
+    .modal-title { font-size: 22px; font-weight: 800; margin-bottom: 8px; padding-left: 40px; }
+    body.ltr .modal-title { padding-left: 0; padding-right: 40px; }
+
+    .modal-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+    .modal-body { padding: 24px; }
+    .modal-section { margin-bottom: 20px; }
+    .modal-section h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--kef-gray); margin-bottom: 8px; }
+    .modal-section p { font-size: 15px; line-height: 1.6; color: var(--kef-navy); }
+
+    .modal-details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .detail-item { background: var(--kef-cream); border-radius: var(--radius-sm); padding: 12px; }
+    .detail-item .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--kef-gray); margin-bottom: 4px; }
+    .detail-item .value { font-size: 15px; font-weight: 600; color: var(--kef-navy); }
+
+    .contact-card { background: linear-gradient(135deg, #E8F4F8, #D0EAE8); border-radius: var(--radius); padding: 20px; margin-top: 8px; }
+    .contact-card h4 { font-size: 16px; font-weight: 700; color: var(--kef-navy); margin-bottom: 12px; }
+    .contact-links { display: flex; flex-direction: column; gap: 8px; }
+    .contact-link { display: flex; align-items: center; gap: 10px; color: var(--kef-teal); text-decoration: none; font-size: 14px; font-weight: 600; transition: color 0.2s; }
+    .contact-link:hover { color: var(--kef-navy); }
+    .contact-link .icon { font-size: 18px; }
+
+    .page { display: none; }
+    .page.active { display: block; }
+
+    .submit-container { max-width: 680px; margin: 0 auto; padding: 40px 24px; }
+
+    .submit-header { text-align: center; margin-bottom: 36px; }
+    .submit-header .emoji { font-size: 48px; display: block; margin-bottom: 12px; }
+    .submit-header h2 { font-size: 28px; font-weight: 800; color: var(--kef-navy); margin-bottom: 8px; }
+    .submit-header p { color: var(--kef-gray); font-size: 15px; }
+
+    .form-card { background: white; border-radius: var(--radius); box-shadow: var(--shadow); padding: 32px; border: 1.5px solid var(--kef-border); }
+
+    .form-section-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--kef-orange); margin-bottom: 16px; margin-top: 28px; padding-bottom: 8px; border-bottom: 2px solid var(--kef-cream); }
+    .form-section-title:first-child { margin-top: 0; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group.full { grid-column: 1 / -1; }
+
+    .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--kef-navy); margin-bottom: 6px; }
+    .form-group label .required { color: var(--kef-orange); margin-right: 2px; }
+    body.ltr .form-group label .required { margin-right: 0; margin-left: 2px; }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--kef-border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-main);
+      font-size: 14px;
+      color: var(--kef-navy);
+      background: white;
+      transition: border-color 0.2s;
+    }
+
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--kef-teal); }
+
+    .form-group select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: left 12px center;
+      padding-left: 32px;
+    }
+
+    body.ltr .form-group select { background-position: right 12px center; padding-left: 14px; padding-right: 32px; }
+
+    .checkbox-group { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; }
+    .checkbox-item { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+    .checkbox-item input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--kef-teal); cursor: pointer; }
+    .checkbox-item span { font-size: 13px; color: var(--kef-navy); }
+
+    .btn-submit-form {
+      width: 100%;
+      background: var(--kef-orange);
+      color: white;
+      border: none;
+      padding: 16px;
+      border-radius: 30px;
+      font-family: var(--font-main);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 24px;
+      box-shadow: 0 4px 16px rgba(255,107,53,0.35);
+    }
+
+    .btn-submit-form:hover { background: #e55a28; transform: translateY(-2px); box-shadow: 0 6px 24px rgba(255,107,53,0.45); }
+    .btn-submit-form:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .success-message { display: none; text-align: center; padding: 48px 24px; background: white; border-radius: var(--radius); box-shadow: var(--shadow); }
+    .success-message.show { display: block; }
+    .success-message .emoji { font-size: 64px; display: block; margin-bottom: 16px; }
+    .success-message h3 { font-size: 24px; font-weight: 800; color: var(--kef-navy); margin-bottom: 8px; }
+    .success-message p { color: var(--kef-gray); font-size: 15px; margin-bottom: 24px; }
+
+    footer { background: var(--kef-navy); color: rgba(255,255,255,0.6); text-align: center; padding: 24px; font-size: 13px; margin-top: 60px; }
+    footer a { color: var(--kef-yellow); text-decoration: none; }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--kef-navy);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 500;
+      z-index: 999;
+      transition: transform 0.3s ease;
+      white-space: nowrap;
+      box-shadow: var(--shadow);
+    }
+
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    .nav-tabs { display: flex; background: white; border-bottom: 2px solid var(--kef-border); }
+
+    .nav-tab {
+      flex: 1;
+      padding: 14px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--kef-gray);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      font-family: var(--font-main);
+    }
+
+    .nav-tab.active { color: var(--kef-orange); border-bottom-color: var(--kef-orange); }
+
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+      .form-group.full { grid-column: 1; }
+      .modal-details-grid { grid-template-columns: 1fr; }
+      .form-card { padding: 20px; }
+      .filters-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a class="logo" href="#" onclick="showPage('home')">Kef<span>List</span> 🎉</a>
+    <div class="header-actions">
+      <button class="lang-toggle" onclick="toggleLang()" id="langBtn">English</button>
+      <a class="btn-submit-header" href="#" onclick="showPage('submit'); return false;" data-he="הוסף פעילות" data-en="Add Listing">הוסף פעילות</a>
+    </div>
+  </header>
+
+  <div class="nav-tabs">
+    <button class="nav-tab active" id="tab-home" onclick="showPage('home')" data-he="🔍 חפש פעילויות" data-en="🔍 Find Activities">🔍 חפש פעילויות</button>
+    <button class="nav-tab" id="tab-submit" onclick="showPage('submit')" data-he="➕ הוסף פעילות" data-en="➕ Add Listing">➕ הוסף פעילות</button>
+  </div>
+
+  <div id="page-home" class="page active">
+    <div class="hero">
+      <span class="hero-emoji">🎪</span>
+      <h1 data-he="מצאו פעילויות <span class='accent'>מדהימות</span> לילדים שלכם" data-en="Find <span class='accent'>Amazing</span> Activities for Your Kids">
+        מצאו פעילויות <span class="accent">מדהימות</span> לילדים שלכם
+      </h1>
+      <p data-he="קייטנות, חוגים, פעילויות אחר הצהריים — הכל במקום אחד" data-en="Summer camps, after-school clubs, and activities — all in one place">
+        קייטנות, חוגים, פעילויות אחר הצהריים — הכל במקום אחד
+      </p>
+      <div class="hero-btns">
+        <a class="btn-primary" href="#listings" data-he="🔍 חפש עכשיו" data-en="🔍 Search Now">🔍 חפש עכשיו</a>
+        <a class="btn-secondary" href="#" onclick="showPage('submit'); return false;" data-he="הוסף פעילות שלך" data-en="Add Your Activity">הוסף פעילות שלך</a>
+      </div>
+    </div>
+
+    <div class="city-bar">
+      <span class="city-label" data-he="עיר:" data-en="City:">עיר:</span>
+      <button class="city-btn active" onclick="selectCity('Jerusalem', this)" data-he="ירושלים" data-en="Jerusalem">ירושלים</button>
+      <button class="city-btn coming-soon" title="בקרוב" data-he="תל אביב" data-en="Tel Aviv">תל אביב</button>
+      <button class="city-btn coming-soon" title="בקרוב" data-he="חיפה" data-en="Haifa">חיפה</button>
+      <button class="city-btn coming-soon" title="בקרוב" data-he="באר שבע" data-en="Beer Sheva">באר שבע</button>
+      <button class="city-btn coming-soon" title="בקרוב" data-he="מודיעין" data-en="Modi'in">מודיעין</button>
+    </div>
+
+    <div class="filters-section">
+      <div class="filters-grid">
+        <div class="filter-group">
+          <label data-he="גיל הילד" data-en="Child's Age">גיל הילד</label>
+          <select id="filter-age" onchange="applyFilters()">
+            <option value="">כל הגילאים</option>
+            <option value="3-5">3–5</option>
+            <option value="6-8">6–8</option>
+            <option value="9-11">9–11</option>
+            <option value="12-14">12–14</option>
+            <option value="15-18">15–18</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label data-he="מגדר" data-en="Gender">מגדר</label>
+          <select id="filter-gender" onchange="applyFilters()">
+            <option value="">הכל</option>
+            <option value="All">מעורב</option>
+            <option value="Girls">בנות</option>
+            <option value="Boys">בנים</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label data-he="קטגוריה" data-en="Category">קטגוריה</label>
+          <select id="filter-category" onchange="applyFilters()">
+            <option value="">כל הסוגים</option>
+            <option value="ספורט">ספורט</option>
+            <option value="אומנות">אומנות</option>
+            <option value="מוזיקה">מוזיקה</option>
+            <option value="מדע וטכנולוגיה">מדע וטכנולוגיה</option>
+            <option value="טבע ושטח">טבע ושטח</option>
+            <option value="תגבור">תגבור</option>
+            <option value="מחול">מחול</option>
+            <option value="תיאטרון">תיאטרון</option>
+            <option value="בישול">בישול</option>
+            <option value="שפות">שפות</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label data-he="עונה" data-en="Season">עונה</label>
+          <select id="filter-season" onchange="applyFilters()">
+            <option value="">כל השנה</option>
+            <option value="After-school">אחר הצהריים</option>
+            <option value="Summer">קייטנת קיץ</option>
+            <option value="Year-round">כל השנה</option>
+            <option value="School breaks">חופשות</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label data-he="מחיר" data-en="Price">מחיר</label>
+          <select id="filter-price" onchange="applyFilters()">
+            <option value="">כל המחירים</option>
+            <option value="Free">חינם</option>
+            <option value="עד ₪100">עד ₪100</option>
+            <option value="₪100–300">₪100–300</option>
+            <option value="₪300+">₪300+</option>
+          </select>
+        </div>
+        <div class="filter-group filters-actions">
+          <button class="btn-filter-clear" onclick="clearFilters()" data-he="נקה סינון" data-en="Clear Filters">נקה סינון</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="main" id="listings">
+      <div class="results-header">
+        <span class="results-count" id="resultsCount"></span>
+      </div>
+      <div class="listings-grid" id="listingsGrid">
+        <div class="loading"><div class="spinner"></div><p>טוען פעילויות...</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="page-submit" class="page">
+    <div class="submit-container">
+      <div class="submit-header">
+        <span class="emoji">✏️</span>
+        <h2 data-he="הוסף פעילות לרשימה" data-en="Add Your Activity">הוסף פעילות לרשימה</h2>
+        <p data-he="הוסף את הפעילות שלך בחינם" data-en="List your activity for free">הוסף את הפעילות שלך בחינם</p>
+      </div>
+
+      <div class="form-card" id="submitFormCard">
+        <form id="submitForm" onsubmit="handleSubmit(event)">
+          <div class="form-section-title" data-he="פרטי הפעילות" data-en="Activity Details">פרטי הפעילות</div>
+          <div class="form-group">
+            <label><span class="required">*</span> <span data-he="שם הפעילות" data-en="Program Name">שם הפעילות</span></label>
+            <input type="text" id="f-name" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label><span class="required">*</span> <span data-he="עיר" data-en="City">עיר</span></label>
+              <select id="f-city" required>
+                <option value="">— בחר —</option>
+                <option value="Jerusalem">ירושלים / Jerusalem</option>
+                <option value="Tel Aviv">תל אביב / Tel Aviv</option>
+                <option value="Haifa">חיפה / Haifa</option>
+                <option value="Beer Sheva">באר שבע / Beer Sheva</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label><span class="required">*</span> <span data-he="שכונה" data-en="Neighborhood">שכונה</span></label>
+              <input type="text" id="f-neighborhood" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label><span class="required">*</span> <span data-he="תיאור קצר (עד 150 תווים)" data-en="Short Description (150 chars)">תיאור קצר</span></label>
+            <input type="text" id="f-short-desc" maxlength="150" required />
+          </div>
+          <div class="form-group">
+            <label><span data-he="תיאור מלא" data-en="Full Description">תיאור מלא</span></label>
+            <textarea id="f-long-desc" rows="4"></textarea>
+          </div>
+          <div class="form-section-title" data-he="פרטים נוספים" data-en="Details">פרטים נוספים</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label><span class="required">*</span> <span data-he="קטגוריה" data-en="Category">קטגוריה</span></label>
+              <select id="f-category" required>
+                <option value="">— בחר —</option>
+                <option value="ספורט">ספורט</option>
+                <option value="אומנות">אומנות</option>
+                <option value="מוזיקה">מוזיקה</option>
+                <option value="מדע וטכנולוגיה">מדע וטכנולוגיה</option>
+                <option value="טבע ושטח">טבע ושטח</option>
+                <option value="תגבור">תגבור</option>
+                <option value="מחול">מחול</option>
+                <option value="תיאטרון">תיאטרון</option>
+                <option value="בישול">בישול</option>
+                <option value="שפות">שפות</option>
+                <option value="אחר">אחר</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label><span class="required">*</span> <span data-he="מגדר" data-en="Gender">מגדר</span></label>
+              <select id="f-gender" required>
+                <option value="">— בחר —</option>
+                <option value="All">מעורב</option>
+                <option value="Girls">בנות</option>
+                <option value="Boys">בנים</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label><span class="required">*</span> <span data-he="גיל מינימום" data-en="Min Age">גיל מינימום</span></label>
+              <input type="number" id="f-age-min" min="1" max="18" required />
+            </div>
+            <div class="form-group">
+              <label><span class="required">*</span> <span data-he="גיל מקסימום" data-en="Max Age">גיל מקסימום</span></label>
+              <input type="number" id="f-age-max" min="1" max="18" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label><span class="required">*</span> <span data-he="עונה" data-en="Season">עונה</span></label>
+            <div class="checkbox-group">
+              <label class="checkbox-item"><input type="checkbox" name="season" value="After-school" /><span data-he="אחר הצהריים" data-en="After-school">אחר הצהריים</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="season" value="Summer" /><span data-he="קייטנת קיץ" data-en="Summer">קייטנת קיץ</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="season" value="Year-round" /><span data-he="כל השנה" data-en="Year-round">כל השנה</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="season" value="School breaks" /><span data-he="חופשות" data-en="School Breaks">חופשות</span></label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label><span class="required">*</span> <span data-he="טווח מחיר" data-en="Price Range">טווח מחיר</span></label>
+            <select id="f-price" required>
+              <option value="">— בחר —</option>
+              <option value="Free">חינם</option>
+              <option value="עד ₪100">עד ₪100</option>
+              <option value="₪100–300">₪100–300</option>
+              <option value="₪300+">₪300+</option>
+            </select>
+          </div>
+          <div class="form-section-title" data-he="פרטי יצירת קשר" data-en="Contact Details">פרטי יצירת קשר</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label><span class="required">*</span> <span data-he="שם" data-en="Name">שם</span></label>
+              <input type="text" id="f-contact-name" required />
+            </div>
+            <div class="form-group">
+              <label><span class="required">*</span> <span data-he="טלפון" data-en="Phone">טלפון</span></label>
+              <input type="tel" id="f-phone" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label><span class="required">*</span> <span data-he="אימייל" data-en="Email">אימייל</span></label>
+              <input type="email" id="f-email" required />
+            </div>
+            <div class="form-group">
+              <label><span data-he="אתר" data-en="Website">אתר</span></label>
+              <input type="url" id="f-website" placeholder="https://" />
+            </div>
+          </div>
+          <button type="submit" class="btn-submit-form" id="submitBtn" data-he="📤 שלח להוספה" data-en="📤 Submit Listing">📤 שלח להוספה</button>
+        </form>
+      </div>
+
+      <div class="success-message" id="successMessage">
+        <span class="emoji">🎉</span>
+        <h3 data-he="תודה! הפעילות שלך התקבלה" data-en="Thank you! Listing received">תודה! הפעילות שלך התקבלה</h3>
+        <p data-he="הפעילות תופיע בדירקטורי בקרוב." data-en="Your listing will appear shortly.">הפעילות תופיע בדירקטורי בקרוב.</p>
+        <button class="btn-primary" onclick="showPage('home')" data-he="🔍 חזור לחיפוש" data-en="🔍 Back to Search">🔍 חזור לחיפוש</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <button class="modal-close" onclick="closeModalDirect()">✕</button>
+        <div class="modal-title" id="modal-title"></div>
+        <div class="modal-badges" id="modal-badges"></div>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <footer>
+    <p>KefList © 2025 · <a href="mailto:ruthieabraham@gmail.com">צור קשר</a></p>
+  </footer>
+
+  <script>
+    // ── CONFIG — no token here, all handled by Netlify function ──
+    const AIRTABLE_URL = '/.netlify/functions/listings';
+
+    let allListings = [];
+    let currentCity = 'Jerusalem';
+    let isHebrew = true;
+
+    const t = {
+      he: {
+        resultsFound: (n) => `נמצאו <strong>${n}</strong> פעילויות`,
+        noResults: 'לא נמצאו פעילויות התואמות את הסינון',
+        noResultsSub: 'נסו לשנות את הסינון או לנקות אותו',
+        ages: 'גילאים', neighborhood: 'שכונה', contact: 'יצירת קשר',
+        description: 'תיאור', details: 'פרטים', season: 'עונה', price: 'מחיר',
+        website: 'אתר', free: 'חינם', submitting: '⏳ שולח...',
+        submitError: '❌ שגיאה, נסה שוב', loadError: 'לא הצלחנו לטעון. בדקו את החיבור.',
+      },
+      en: {
+        resultsFound: (n) => `<strong>${n}</strong> activities found`,
+        noResults: 'No activities match your filters',
+        noResultsSub: 'Try changing or clearing the filters',
+        ages: 'Ages', neighborhood: 'Neighborhood', contact: 'Contact',
+        description: 'Description', details: 'Details', season: 'Season', price: 'Price',
+        website: 'Website', free: 'Free', submitting: '⏳ Submitting...',
+        submitError: '❌ Error, please try again', loadError: 'Could not load listings.',
+      }
+    };
+
+    function tr(key, ...args) {
+      const val = t[isHebrew ? 'he' : 'en'][key];
+      return typeof val === 'function' ? val(...args) : val;
+    }
+
+    const categoryEmoji = {
+      'ספורט': '⚽', 'אומנות': '🎨', 'מוזיקה': '🎵', 'מדע וטכנולוגיה': '🔬',
+      'טבע ושטח': '🌿', 'תגבור': '📚', 'מחול': '💃', 'תיאטרון': '🎭',
+      'בישול': '🍳', 'שפות': '🗣️', 'אחר': '✨'
+    };
+
+    function toggleLang() {
+      isHebrew = !isHebrew;
+      const body = document.body;
+      const btn = document.getElementById('langBtn');
+      if (isHebrew) {
+        body.setAttribute('dir', 'rtl'); body.setAttribute('lang', 'he');
+        body.classList.remove('ltr'); btn.textContent = 'English';
+      } else {
+        body.setAttribute('dir', 'ltr'); body.setAttribute('lang', 'en');
+        body.classList.add('ltr'); btn.textContent = 'עברית';
+      }
+      document.querySelectorAll('[data-he]').forEach(el => {
+        const text = isHebrew ? el.getAttribute('data-he') : el.getAttribute('data-en');
+        if (text) el.innerHTML = text;
+      });
+      renderListings(getFilteredListings());
+    }
+
+    function showPage(page) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById(`page-${page}`).classList.add('active');
+      const tab = document.getElementById(`tab-${page}`);
+      if (tab) tab.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    function selectCity(city, btn) {
+      if (btn.classList.contains('coming-soon')) {
+        showToast(isHebrew ? `${city} — בקרוב! 🚀` : `${city} — Coming soon! 🚀`);
+        return;
+      }
+      currentCity = city;
+      document.querySelectorAll('.city-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilters();
+    }
+
+    async function fetchListings() {
+      const grid = document.getElementById('listingsGrid');
+      grid.innerHTML = `<div class="loading"><div class="spinner"></div><p>${isHebrew ? 'טוען...' : 'Loading...'}</p></div>`;
+      try {
+        const params = new URLSearchParams({ filterByFormula: `{Status}='Approved'` });
+        const res = await fetch(`${AIRTABLE_URL}?${params}`);
+        if (!res.ok) throw new Error('fetch failed');
+        const data = await res.json();
+        allListings = (data.records || []).map(r => ({ id: r.id, ...r.fields }));
+        applyFilters();
+      } catch (err) {
+        console.error(err);
+        grid.innerHTML = `<div class="empty-state"><span class="emoji">⚠️</span><h3>${tr('loadError')}</h3></div>`;
+      }
+    }
+
+    function getFilteredListings() {
+      const age = document.getElementById('filter-age').value;
+      const gender = document.getElementById('filter-gender').value;
+      const category = document.getElementById('filter-category').value;
+      const season = document.getElementById('filter-season').value;
+      const price = document.getElementById('filter-price').value;
+      return allListings.filter(l => {
+        if (l.City !== currentCity) return false;
+        if (age) {
+          const [minAge, maxAge] = age.split('-').map(Number);
+          if (Number(l['Age Max']) < minAge || Number(l['Age Min']) > maxAge) return false;
+        }
+        if (gender && l.Gender !== gender && l.Gender !== 'All') return false;
+        if (category) {
+          const cats = Array.isArray(l.Category) ? l.Category : [l.Category];
+          if (!cats.some(c => c === category)) return false;
+        }
+        if (season) {
+          const seasons = Array.isArray(l.Season) ? l.Season : [l.Season];
+          if (!seasons.some(s => s === season)) return false;
+        }
+        if (price && l['Price Range'] !== price) return false;
+        return true;
+      });
+    }
+
+    function applyFilters() { renderListings(getFilteredListings()); }
+
+    function clearFilters() {
+      ['filter-age','filter-gender','filter-category','filter-season','filter-price']
+        .forEach(id => document.getElementById(id).value = '');
+      applyFilters();
+    }
+
+    function renderListings(listings) {
+      const grid = document.getElementById('listingsGrid');
+      const count = document.getElementById('resultsCount');
+      count.innerHTML = tr('resultsFound', listings.length);
+      if (!listings.length) {
+        grid.innerHTML = `<div class="empty-state"><span class="emoji">🔍</span><h3>${tr('noResults')}</h3><p>${tr('noResultsSub')}</p></div>`;
+        return;
+      }
+      grid.innerHTML = listings.map(l => {
+        const cat = Array.isArray(l.Category) ? l.Category[0] : (l.Category || '');
+        const seasons = Array.isArray(l.Season) ? l.Season : [l.Season || ''];
+        const emoji = categoryEmoji[cat] || '✨';
+        const gLabel = l.Gender === 'Girls' ? (isHebrew ? 'בנות' : 'Girls') : l.Gender === 'Boys' ? (isHebrew ? 'בנים' : 'Boys') : '';
+        const sLabel = seasons[0] === 'After-school' ? (isHebrew ? 'אחר הצהריים' : 'After-school')
+          : seasons[0] === 'Summer' ? (isHebrew ? 'קיץ' : 'Summer')
+          : seasons[0] === 'Year-round' ? (isHebrew ? 'כל השנה' : 'Year-round')
+          : seasons[0] === 'School breaks' ? (isHebrew ? 'חופשות' : 'Breaks') : '';
+        const price = l['Price Range'] || '';
+        return `<div class="listing-card" onclick="openModal('${l.id}')">
+          <div class="card-image">${emoji}</div>
+          <div class="card-body">
+            <div class="card-badges">
+              ${cat ? `<span class="badge badge-category">${cat}</span>` : ''}
+              ${sLabel ? `<span class="badge badge-season">${sLabel}</span>` : ''}
+              ${gLabel ? `<span class="badge badge-gender">${gLabel}</span>` : ''}
+            </div>
+            <div class="card-title">${l['Program Name'] || ''}</div>
+            <div class="card-desc">${l['Short Description'] || ''}</div>
+            <div class="card-meta">
+              ${l.Neighborhood ? `<span class="card-meta-item"><span class="icon">📍</span>${l.Neighborhood}</span>` : ''}
+              ${l['Age Min'] && l['Age Max'] ? `<span class="card-meta-item"><span class="icon">👤</span>${isHebrew ? 'גיל' : 'Age'} ${l['Age Min']}–${l['Age Max']}</span>` : ''}
+              ${price ? `<span class="card-meta-item card-price">₪ ${price === 'Free' ? tr('free') : price}</span>` : ''}
+            </div>
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    function openModal(id) {
+      const l = allListings.find(x => x.id === id);
+      if (!l) return;
+      const cat = Array.isArray(l.Category) ? l.Category[0] : (l.Category || '');
+      const emoji = categoryEmoji[cat] || '✨';
+      const seasons = Array.isArray(l.Season) ? l.Season.join(', ') : (l.Season || '');
+      const gLabel = l.Gender === 'Girls' ? (isHebrew ? 'בנות' : 'Girls')
+        : l.Gender === 'Boys' ? (isHebrew ? 'בנים' : 'Boys')
+        : (isHebrew ? 'מעורב' : 'Mixed');
+      document.getElementById('modal-title').textContent = l['Program Name'] || '';
+      document.getElementById('modal-badges').innerHTML = `
+        ${cat ? `<span class="badge badge-category">${emoji} ${cat}</span>` : ''}
+        <span class="badge badge-gender">${gLabel}</span>`;
+      document.getElementById('modal-body').innerHTML = `
+        ${l['Long Description'] || l['Short Description'] ? `<div class="modal-section"><h4>${tr('description')}</h4><p>${l['Long Description'] || l['Short Description']}</p></div>` : ''}
+        <div class="modal-section"><h4>${tr('details')}</h4>
+          <div class="modal-details-grid">
+            ${l.Neighborhood ? `<div class="detail-item"><div class="label">📍 ${tr('neighborhood')}</div><div class="value">${l.Neighborhood}</div></div>` : ''}
+            ${l['Age Min'] && l['Age Max'] ? `<div class="detail-item"><div class="label">👤 ${tr('ages')}</div><div class="value">${l['Age Min']}–${l['Age Max']}</div></div>` : ''}
+            ${l['Price Range'] ? `<div class="detail-item"><div class="label">₪ ${tr('price')}</div><div class="value">${l['Price Range'] === 'Free' ? tr('free') : l['Price Range']}</div></div>` : ''}
+            ${seasons ? `<div class="detail-item"><div class="label">🗓 ${tr('season')}</div><div class="value">${seasons}</div></div>` : ''}
+          </div>
+        </div>
+        <div class="modal-section"><h4>${tr('contact')}</h4>
+          <div class="contact-card">
+            ${l['Contact Name'] ? `<h4>👤 ${l['Contact Name']}</h4>` : ''}
+            <div class="contact-links">
+              ${l['Contact Phone'] ? `<a class="contact-link" href="tel:${l['Contact Phone']}"><span class="icon">📞</span>${l['Contact Phone']}</a>` : ''}
+              ${l['Contact Email'] ? `<a class="contact-link" href="mailto:${l['Contact Email']}"><span class="icon">✉️</span>${l['Contact Email']}</a>` : ''}
+              ${l.Website ? `<a class="contact-link" href="${l.Website}" target="_blank"><span class="icon">🌐</span>${tr('website')}</a>` : ''}
+            </div>
+          </div>
+        </div>`;
+      document.getElementById('modalOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(e) { if (e.target === document.getElementById('modalOverlay')) closeModalDirect(); }
+    function closeModalDirect() { document.getElementById('modalOverlay').classList.remove('open'); document.body.style.overflow = ''; }
+
+    async function handleSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = tr('submitting');
+      const seasons = [...document.querySelectorAll('input[name="season"]:checked')].map(c => c.value);
+      const fields = {
+        'Program Name': document.getElementById('f-name').value,
+        'City': document.getElementById('f-city').value,
+        'Neighborhood': document.getElementById('f-neighborhood').value,
+        'Short Description': document.getElementById('f-short-desc').value,
+        'Long Description': document.getElementById('f-long-desc').value,
+        'Category': document.getElementById('f-category').value,
+        'Gender': document.getElementById('f-gender').value,
+        'Age Min': parseInt(document.getElementById('f-age-min').value),
+        'Age Max': parseInt(document.getElementById('f-age-max').value),
+        'Season': seasons,
+        'Price Range': document.getElementById('f-price').value,
+        'Contact Name': document.getElementById('f-contact-name').value,
+        'Contact Email': document.getElementById('f-email').value,
+        'Contact Phone': document.getElementById('f-phone').value,
+        'Website': document.getElementById('f-website').value,
+        'Status': 'Approved',
+        'Submitted At': new Date().toISOString().split('T')[0]
+      };
+      try {
+        const res = await fetch(AIRTABLE_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ fields })
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          console.error('Airtable error:', data);
+          throw new Error(data?.error?.message || 'Submit failed');
+        }
+        document.getElementById('submitFormCard').style.display = 'none';
+        document.getElementById('successMessage').classList.add('show');
+        await fetchListings();
+      } catch (err) {
+        console.error('Submit error:', err);
+        showToast(tr('submitError') + ': ' + err.message);
+        btn.disabled = false;
+        btn.innerHTML = isHebrew ? '📤 שלח להוספה' : '📤 Submit Listing';
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 4000);
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
+    fetchListings();
+  </script>
+</body>
+</html>
