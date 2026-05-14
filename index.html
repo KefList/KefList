@@ -59,6 +59,7 @@
       display: flex;
       align-items: center;
       gap: 6px;
+      direction: ltr;
     }
 
     .logo span { color: var(--kef-orange); }
@@ -273,7 +274,6 @@
     }
 
     .filter-group select:focus { outline: none; border-color: var(--kef-teal); }
-
     .filters-actions { display: flex; align-items: flex-end; gap: 8px; }
 
     .btn-filter-clear {
@@ -338,17 +338,13 @@
     }
 
     .card-body { padding: 16px; flex: 1; display: flex; flex-direction: column; }
-
     .card-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
-
     .badge { padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
     .badge-category { background: #E8F4F8; color: var(--kef-teal); }
     .badge-season { background: #FFF3E0; color: #E65100; }
     .badge-gender { background: #F3E5F5; color: #7B1FA2; }
-
     .card-title { font-size: 17px; font-weight: 700; color: var(--kef-navy); margin-bottom: 6px; line-height: 1.3; }
     .card-desc { font-size: 13px; color: var(--kef-gray); line-height: 1.5; flex: 1; margin-bottom: 12px; }
-
     .card-meta { display: flex; flex-wrap: wrap; gap: 10px; padding-top: 12px; border-top: 1px solid var(--kef-border); }
     .card-meta-item { font-size: 12px; color: var(--kef-gray); display: flex; align-items: center; gap: 4px; }
     .card-meta-item .icon { font-size: 14px; }
@@ -359,89 +355,28 @@
     .empty-state h3 { font-size: 20px; font-weight: 700; color: var(--kef-navy); margin-bottom: 8px; }
 
     .loading { text-align: center; padding: 80px 24px; grid-column: 1 / -1; }
-
-    .spinner {
-      width: 40px; height: 40px;
-      border: 3px solid var(--kef-border);
-      border-top-color: var(--kef-orange);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      margin: 0 auto 16px;
-    }
-
+    .spinner { width: 40px; height: 40px; border: 3px solid var(--kef-border); border-top-color: var(--kef-orange); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(27,42,74,0.6);
-      z-index: 200;
-      padding: 20px;
-      overflow-y: auto;
-      align-items: flex-start;
-      justify-content: center;
-    }
-
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(27,42,74,0.6); z-index: 200; padding: 20px; overflow-y: auto; align-items: flex-start; justify-content: center; }
     .modal-overlay.open { display: flex; }
-
-    .modal {
-      background: white;
-      border-radius: var(--radius);
-      max-width: 600px;
-      width: 100%;
-      margin: auto;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(27,42,74,0.25);
-      animation: modalIn 0.25s ease;
-    }
-
-    @keyframes modalIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .modal-header {
-      background: linear-gradient(135deg, var(--kef-navy), #2d4a7a);
-      padding: 24px;
-      color: white;
-      position: relative;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 16px; left: 16px;
-      background: rgba(255,255,255,0.15);
-      border: none;
-      color: white;
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      font-size: 18px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s;
-    }
-
+    .modal { background: white; border-radius: var(--radius); max-width: 600px; width: 100%; margin: auto; overflow: hidden; box-shadow: 0 20px 60px rgba(27,42,74,0.25); animation: modalIn 0.25s ease; }
+    @keyframes modalIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .modal-header { background: linear-gradient(135deg, var(--kef-navy), #2d4a7a); padding: 24px; color: white; position: relative; }
+    .modal-close { position: absolute; top: 16px; left: 16px; background: rgba(255,255,255,0.15); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
     body.ltr .modal-close { left: auto; right: 16px; }
     .modal-close:hover { background: rgba(255,255,255,0.25); }
-
     .modal-title { font-size: 22px; font-weight: 800; margin-bottom: 8px; padding-left: 40px; }
     body.ltr .modal-title { padding-left: 0; padding-right: 40px; }
-
     .modal-badges { display: flex; flex-wrap: wrap; gap: 6px; }
     .modal-body { padding: 24px; }
     .modal-section { margin-bottom: 20px; }
     .modal-section h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--kef-gray); margin-bottom: 8px; }
     .modal-section p { font-size: 15px; line-height: 1.6; color: var(--kef-navy); }
-
     .modal-details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
     .detail-item { background: var(--kef-cream); border-radius: var(--radius-sm); padding: 12px; }
     .detail-item .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--kef-gray); margin-bottom: 4px; }
     .detail-item .value { font-size: 15px; font-weight: 600; color: var(--kef-navy); }
-
     .contact-card { background: linear-gradient(135deg, #E8F4F8, #D0EAE8); border-radius: var(--radius); padding: 20px; margin-top: 8px; }
     .contact-card h4 { font-size: 16px; font-weight: 700; color: var(--kef-navy); margin-bottom: 12px; }
     .contact-links { display: flex; flex-direction: column; gap: 8px; }
@@ -453,123 +388,59 @@
     .page.active { display: block; }
 
     .submit-container { max-width: 680px; margin: 0 auto; padding: 40px 24px; }
-
     .submit-header { text-align: center; margin-bottom: 36px; }
     .submit-header .emoji { font-size: 48px; display: block; margin-bottom: 12px; }
     .submit-header h2 { font-size: 28px; font-weight: 800; color: var(--kef-navy); margin-bottom: 8px; }
     .submit-header p { color: var(--kef-gray); font-size: 15px; }
-
     .form-card { background: white; border-radius: var(--radius); box-shadow: var(--shadow); padding: 32px; border: 1.5px solid var(--kef-border); }
-
     .form-section-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--kef-orange); margin-bottom: 16px; margin-top: 28px; padding-bottom: 8px; border-bottom: 2px solid var(--kef-cream); }
     .form-section-title:first-child { margin-top: 0; }
-
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .form-group { margin-bottom: 16px; }
     .form-group.full { grid-column: 1 / -1; }
-
     .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--kef-navy); margin-bottom: 6px; }
     .form-group label .required { color: var(--kef-orange); margin-right: 2px; }
     body.ltr .form-group label .required { margin-right: 0; margin-left: 2px; }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 10px 14px;
-      border: 1.5px solid var(--kef-border);
-      border-radius: var(--radius-sm);
-      font-family: var(--font-main);
-      font-size: 14px;
-      color: var(--kef-navy);
-      background: white;
-      transition: border-color 0.2s;
-    }
-
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px 14px; border: 1.5px solid var(--kef-border); border-radius: var(--radius-sm); font-family: var(--font-main); font-size: 14px; color: var(--kef-navy); background: white; transition: border-color 0.2s; }
     .form-group textarea { resize: vertical; min-height: 100px; }
     .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--kef-teal); }
-
-    .form-group select {
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: left 12px center;
-      padding-left: 32px;
-    }
-
+    .form-group select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: left 12px center; padding-left: 32px; }
     body.ltr .form-group select { background-position: right 12px center; padding-left: 14px; padding-right: 32px; }
-
     .checkbox-group { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; }
     .checkbox-item { display: flex; align-items: center; gap: 8px; cursor: pointer; }
     .checkbox-item input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--kef-teal); cursor: pointer; }
     .checkbox-item span { font-size: 13px; color: var(--kef-navy); }
-
-    .btn-submit-form {
-      width: 100%;
-      background: var(--kef-orange);
-      color: white;
-      border: none;
-      padding: 16px;
-      border-radius: 30px;
-      font-family: var(--font-main);
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s;
-      margin-top: 24px;
-      box-shadow: 0 4px 16px rgba(255,107,53,0.35);
-    }
-
+    .btn-submit-form { width: 100%; background: var(--kef-orange); color: white; border: none; padding: 16px; border-radius: 30px; font-family: var(--font-main); font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.2s; margin-top: 24px; box-shadow: 0 4px 16px rgba(255,107,53,0.35); }
     .btn-submit-form:hover { background: #e55a28; transform: translateY(-2px); box-shadow: 0 6px 24px rgba(255,107,53,0.45); }
     .btn-submit-form:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-
     .success-message { display: none; text-align: center; padding: 48px 24px; background: white; border-radius: var(--radius); box-shadow: var(--shadow); }
     .success-message.show { display: block; }
     .success-message .emoji { font-size: 64px; display: block; margin-bottom: 16px; }
     .success-message h3 { font-size: 24px; font-weight: 800; color: var(--kef-navy); margin-bottom: 8px; }
     .success-message p { color: var(--kef-gray); font-size: 15px; margin-bottom: 24px; }
 
+    /* ABOUT PAGE */
+    .about-container { max-width: 680px; margin: 0 auto; padding: 40px 24px; }
+    .about-card { background: white; border-radius: var(--radius); box-shadow: var(--shadow); padding: 40px; border: 1.5px solid var(--kef-border); margin-bottom: 24px; }
+    .about-card .emoji { font-size: 48px; display: block; margin-bottom: 16px; }
+    .about-card h2 { font-size: 26px; font-weight: 800; color: var(--kef-navy); margin-bottom: 16px; }
+    .about-card p { font-size: 16px; line-height: 1.8; color: var(--kef-gray); margin-bottom: 12px; }
+    .about-card p:last-child { margin-bottom: 0; }
+    .about-card .signature { font-size: 16px; font-weight: 700; color: var(--kef-navy); margin-top: 16px; }
+    .contact-section { background: linear-gradient(135deg, #E8F4F8, #D0EAE8); border-radius: var(--radius); padding: 32px; }
+    .contact-section h3 { font-size: 20px; font-weight: 800; color: var(--kef-navy); margin-bottom: 20px; }
+    .contact-item { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; text-decoration: none; color: var(--kef-navy); font-size: 16px; font-weight: 600; transition: color 0.2s; }
+    .contact-item:hover { color: var(--kef-teal); }
+    .contact-item .icon { font-size: 24px; }
+
     footer { background: var(--kef-navy); color: rgba(255,255,255,0.6); text-align: center; padding: 24px; font-size: 13px; margin-top: 60px; }
     footer a { color: var(--kef-yellow); text-decoration: none; }
 
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%) translateY(80px);
-      background: var(--kef-navy);
-      color: white;
-      padding: 12px 24px;
-      border-radius: 30px;
-      font-size: 14px;
-      font-weight: 500;
-      z-index: 999;
-      transition: transform 0.3s ease;
-      white-space: nowrap;
-      box-shadow: var(--shadow);
-    }
-
+    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--kef-navy); color: white; padding: 12px 24px; border-radius: 30px; font-size: 14px; font-weight: 500; z-index: 999; transition: transform 0.3s ease; white-space: nowrap; box-shadow: var(--shadow); }
     .toast.show { transform: translateX(-50%) translateY(0); }
 
     .nav-tabs { display: flex; background: white; border-bottom: 2px solid var(--kef-border); }
-
-    .nav-tab {
-      flex: 1;
-      padding: 14px;
-      text-align: center;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--kef-gray);
-      cursor: pointer;
-      border-bottom: 3px solid transparent;
-      transition: all 0.2s;
-      background: none;
-      border-top: none;
-      border-left: none;
-      border-right: none;
-      font-family: var(--font-main);
-    }
-
+    .nav-tab { flex: 1; padding: 14px; text-align: center; font-size: 14px; font-weight: 600; color: var(--kef-gray); cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s; background: none; border-top: none; border-left: none; border-right: none; font-family: var(--font-main); }
     .nav-tab.active { color: var(--kef-orange); border-bottom-color: var(--kef-orange); }
 
     @media (max-width: 600px) {
@@ -578,6 +449,7 @@
       .modal-details-grid { grid-template-columns: 1fr; }
       .form-card { padding: 20px; }
       .filters-grid { grid-template-columns: 1fr 1fr; }
+      .about-card { padding: 24px; }
     }
   </style>
 </head>
@@ -594,8 +466,10 @@
   <div class="nav-tabs">
     <button class="nav-tab active" id="tab-home" onclick="showPage('home')" data-he="🔍 חפש פעילויות" data-en="🔍 Find Activities">🔍 חפש פעילויות</button>
     <button class="nav-tab" id="tab-submit" onclick="showPage('submit')" data-he="➕ הוסף פעילות" data-en="➕ Add Listing">➕ הוסף פעילות</button>
+    <button class="nav-tab" id="tab-about" onclick="showPage('about')" data-he="ℹ️ אודות" data-en="ℹ️ About">ℹ️ אודות</button>
   </div>
 
+  <!-- HOME PAGE -->
   <div id="page-home" class="page active">
     <div class="hero">
       <span class="hero-emoji">🎪</span>
@@ -614,10 +488,12 @@
     <div class="city-bar">
       <span class="city-label" data-he="עיר:" data-en="City:">עיר:</span>
       <button class="city-btn active" onclick="selectCity('Jerusalem', this)" data-he="ירושלים" data-en="Jerusalem">ירושלים</button>
+      <button class="city-btn" onclick="selectCity('Beit Shemesh', this)" data-he="בית שמש" data-en="Beit Shemesh">בית שמש</button>
+      <button class="city-btn" onclick="selectCity('Ramat Beit Shemesh', this)" data-he="רמת בית שמש" data-en="Ramat Beit Shemesh">רמת בית שמש</button>
+      <button class="city-btn" onclick="selectCity('Modiin', this)" data-he="מודיעין" data-en="Modi'in">מודיעין</button>
       <button class="city-btn coming-soon" title="בקרוב" data-he="תל אביב" data-en="Tel Aviv">תל אביב</button>
       <button class="city-btn coming-soon" title="בקרוב" data-he="חיפה" data-en="Haifa">חיפה</button>
       <button class="city-btn coming-soon" title="בקרוב" data-he="באר שבע" data-en="Beer Sheva">באר שבע</button>
-      <button class="city-btn coming-soon" title="בקרוב" data-he="מודיעין" data-en="Modi'in">מודיעין</button>
     </div>
 
     <div class="filters-section">
@@ -625,7 +501,7 @@
         <div class="filter-group">
           <label data-he="גיל הילד" data-en="Child's Age">גיל הילד</label>
           <select id="filter-age" onchange="applyFilters()">
-            <option value="">כל הגילאים</option>
+            <option value="" data-he="כל הגילאים" data-en="All Ages">כל הגילאים</option>
             <option value="3-5">3–5</option>
             <option value="6-8">6–8</option>
             <option value="9-11">9–11</option>
@@ -636,46 +512,47 @@
         <div class="filter-group">
           <label data-he="מגדר" data-en="Gender">מגדר</label>
           <select id="filter-gender" onchange="applyFilters()">
-            <option value="">הכל</option>
-            <option value="All">מעורב</option>
-            <option value="Girls">בנות</option>
-            <option value="Boys">בנים</option>
+            <option value="" data-he="הכל" data-en="All">הכל</option>
+            <option value="All" data-he="מעורב" data-en="Mixed">מעורב</option>
+            <option value="Girls" data-he="בנות" data-en="Girls">בנות</option>
+            <option value="Boys" data-he="בנים" data-en="Boys">בנים</option>
           </select>
         </div>
         <div class="filter-group">
           <label data-he="קטגוריה" data-en="Category">קטגוריה</label>
           <select id="filter-category" onchange="applyFilters()">
-            <option value="">כל הסוגים</option>
-            <option value="ספורט">ספורט</option>
-            <option value="אומנות">אומנות</option>
-            <option value="מוזיקה">מוזיקה</option>
-            <option value="מדע וטכנולוגיה">מדע וטכנולוגיה</option>
-            <option value="טבע ושטח">טבע ושטח</option>
-            <option value="תגבור">תגבור</option>
-            <option value="מחול">מחול</option>
-            <option value="תיאטרון">תיאטרון</option>
-            <option value="בישול">בישול</option>
-            <option value="שפות">שפות</option>
+            <option value="" data-he="כל הסוגים" data-en="All Categories">כל הסוגים</option>
+            <option value="ספורט" data-he="ספורט" data-en="Sports">ספורט</option>
+            <option value="אומנות" data-he="אומנות" data-en="Arts">אומנות</option>
+            <option value="מוזיקה" data-he="מוזיקה" data-en="Music">מוזיקה</option>
+            <option value="מדע וטכנולוגיה" data-he="מדע וטכנולוגיה" data-en="STEM">מדע וטכנולוגיה</option>
+            <option value="טבע ושטח" data-he="טבע ושטח" data-en="Outdoors">טבע ושטח</option>
+            <option value="תגבור" data-he="תגבור" data-en="Tutoring">תגבור</option>
+            <option value="מחול" data-he="מחול" data-en="Dance">מחול</option>
+            <option value="תיאטרון" data-he="תיאטרון" data-en="Drama">תיאטרון</option>
+            <option value="בישול" data-he="בישול" data-en="Cooking">בישול</option>
+            <option value="שפות" data-he="שפות" data-en="Languages">שפות</option>
           </select>
         </div>
         <div class="filter-group">
           <label data-he="עונה" data-en="Season">עונה</label>
           <select id="filter-season" onchange="applyFilters()">
-            <option value="">כל השנה</option>
-            <option value="After-school">אחר הצהריים</option>
-            <option value="Summer">קייטנת קיץ</option>
-            <option value="Year-round">כל השנה</option>
-            <option value="School breaks">חופשות</option>
+            <option value="" data-he="כל השנה" data-en="All Year">כל השנה</option>
+            <option value="After-school" data-he="אחר הצהריים" data-en="After-school">אחר הצהריים</option>
+            <option value="Summer" data-he="קייטנת קיץ" data-en="Summer Camp">קייטנת קיץ</option>
+            <option value="Year-round" data-he="כל השנה" data-en="Year-round">כל השנה</option>
+            <option value="School breaks" data-he="חופשות" data-en="School Breaks">חופשות</option>
           </select>
         </div>
         <div class="filter-group">
           <label data-he="מחיר" data-en="Price">מחיר</label>
           <select id="filter-price" onchange="applyFilters()">
-            <option value="">כל המחירים</option>
-            <option value="Free">חינם</option>
-            <option value="עד ₪100">עד ₪100</option>
-            <option value="₪100–300">₪100–300</option>
-            <option value="₪300+">₪300+</option>
+            <option value="" data-he="כל המחירים" data-en="Any Price">כל המחירים</option>
+            <option value="Free" data-he="חינם" data-en="Free">חינם</option>
+            <option value="עד ₪100" data-he="עד ₪100" data-en="Up to ₪100">עד ₪100</option>
+            <option value="₪100–300" data-he="₪100–300" data-en="₪100–300">₪100–300</option>
+            <option value="₪300–500" data-he="₪300–500" data-en="₪300–500">₪300–500</option>
+            <option value="₪500+" data-he="₪500+" data-en="₪500+">₪500+</option>
           </select>
         </div>
         <div class="filter-group filters-actions">
@@ -694,6 +571,7 @@
     </div>
   </div>
 
+  <!-- SUBMIT PAGE -->
   <div id="page-submit" class="page">
     <div class="submit-container">
       <div class="submit-header">
@@ -715,6 +593,9 @@
               <select id="f-city" required>
                 <option value="">— בחר —</option>
                 <option value="Jerusalem">ירושלים / Jerusalem</option>
+                <option value="Beit Shemesh">בית שמש / Beit Shemesh</option>
+                <option value="Ramat Beit Shemesh">רמת בית שמש / Ramat Beit Shemesh</option>
+                <option value="Modiin">מודיעין / Modi'in</option>
                 <option value="Tel Aviv">תל אביב / Tel Aviv</option>
                 <option value="Haifa">חיפה / Haifa</option>
                 <option value="Beer Sheva">באר שבע / Beer Sheva</option>
@@ -739,26 +620,26 @@
               <label><span class="required">*</span> <span data-he="קטגוריה" data-en="Category">קטגוריה</span></label>
               <select id="f-category" required>
                 <option value="">— בחר —</option>
-                <option value="ספורט">ספורט</option>
-                <option value="אומנות">אומנות</option>
-                <option value="מוזיקה">מוזיקה</option>
-                <option value="מדע וטכנולוגיה">מדע וטכנולוגיה</option>
-                <option value="טבע ושטח">טבע ושטח</option>
-                <option value="תגבור">תגבור</option>
-                <option value="מחול">מחול</option>
-                <option value="תיאטרון">תיאטרון</option>
-                <option value="בישול">בישול</option>
-                <option value="שפות">שפות</option>
-                <option value="אחר">אחר</option>
+                <option value="ספורט" data-he="ספורט" data-en="Sports">ספורט</option>
+                <option value="אומנות" data-he="אומנות" data-en="Arts">אומנות</option>
+                <option value="מוזיקה" data-he="מוזיקה" data-en="Music">מוזיקה</option>
+                <option value="מדע וטכנולוגיה" data-he="מדע וטכנולוגיה" data-en="STEM">מדע וטכנולוגיה</option>
+                <option value="טבע ושטח" data-he="טבע ושטח" data-en="Outdoors">טבע ושטח</option>
+                <option value="תגבור" data-he="תגבור" data-en="Tutoring">תגבור</option>
+                <option value="מחול" data-he="מחול" data-en="Dance">מחול</option>
+                <option value="תיאטרון" data-he="תיאטרון" data-en="Drama">תיאטרון</option>
+                <option value="בישול" data-he="בישול" data-en="Cooking">בישול</option>
+                <option value="שפות" data-he="שפות" data-en="Languages">שפות</option>
+                <option value="אחר" data-he="אחר" data-en="Other">אחר</option>
               </select>
             </div>
             <div class="form-group">
               <label><span class="required">*</span> <span data-he="מגדר" data-en="Gender">מגדר</span></label>
               <select id="f-gender" required>
                 <option value="">— בחר —</option>
-                <option value="All">מעורב</option>
-                <option value="Girls">בנות</option>
-                <option value="Boys">בנים</option>
+                <option value="All" data-he="מעורב" data-en="Mixed">מעורב</option>
+                <option value="Girls" data-he="בנות" data-en="Girls">בנות</option>
+                <option value="Boys" data-he="בנים" data-en="Boys">בנים</option>
               </select>
             </div>
           </div>
@@ -785,10 +666,11 @@
             <label><span class="required">*</span> <span data-he="טווח מחיר" data-en="Price Range">טווח מחיר</span></label>
             <select id="f-price" required>
               <option value="">— בחר —</option>
-              <option value="Free">חינם</option>
+              <option value="Free" data-he="חינם" data-en="Free">חינם</option>
               <option value="עד ₪100">עד ₪100</option>
               <option value="₪100–300">₪100–300</option>
-              <option value="₪300+">₪300+</option>
+              <option value="₪300–500">₪300–500</option>
+              <option value="₪500+">₪500+</option>
             </select>
           </div>
           <div class="form-section-title" data-he="פרטי יצירת קשר" data-en="Contact Details">פרטי יצירת קשר</div>
@@ -825,6 +707,39 @@
     </div>
   </div>
 
+  <!-- ABOUT PAGE -->
+  <div id="page-about" class="page">
+    <div class="about-container">
+      <div class="about-card">
+        <span class="emoji">💡</span>
+        <h2 data-he="הסיפור מאחורי KefList" data-en="The Story Behind KefList">הסיפור מאחורי KefList</h2>
+        <p data-he="כהורה בירושלים, אני מכירה את התחושה: אתה גולל בין 15 קבוצות וואטסאפ שונות, מנסה לא לפספס את הפוסט על הקייטנה המושלמת או החוג הכי מתאים לילד שלך — ולרוב בכל זאת מפספסת. יצרתי את KefList כי זה לא אמור להיות כל כך מסובך. מקום אחד, כל הפעילויות, בלי לקפוץ בין קבוצות. בין אם אתם מחפשים קייטנת קיץ, חוג אחר הצהריים, או משהו לחופשות — הכל כאן."
+               data-en="As a parent in Jerusalem, I know the drill: you're scrolling through 15 different WhatsApp groups, trying not to miss the one post about the perfect summer camp or chug for your kid — and half the time you still do. I built KefList because that shouldn't be so hard. One place, every activity, no more group-hopping. Whether you're looking for a summer camp, an after-school chug, or something for the holidays — it's all here.">
+          As a parent in Jerusalem, I know the drill: you're scrolling through 15 different WhatsApp groups, trying not to miss the one post about the perfect summer camp or chug for your kid — and half the time you still do. I built KefList because that shouldn't be so hard. One place, every activity, no more group-hopping. Whether you're looking for a summer camp, an after-school chug, or something for the holidays — it's all here.
+        </p>
+        <p class="signature">— Ruthie</p>
+      </div>
+
+      <div class="contact-section">
+        <h3 data-he="📬 צרו קשר" data-en="📬 Get in Touch">📬 צרו קשר</h3>
+        <p style="color: var(--kef-gray); margin-bottom: 20px; font-size: 15px;"
+           data-he="יש לכם פידבק? שאלה? רוצים להוסיף פעילות? אשמח לשמוע מכם."
+           data-en="Have feedback? A question? Want to add a listing? I'd love to hear from you.">
+          יש לכם פידבק? שאלה? רוצים להוסיף פעילות? אשמח לשמוע מכם.
+        </p>
+        <a class="contact-item" href="mailto:ruthieabraham@gmail.com">
+          <span class="icon">✉️</span>
+          ruthieabraham@gmail.com
+        </a>
+        <a class="contact-item" href="https://wa.me/972527275904" target="_blank">
+          <span class="icon">💬</span>
+          <span data-he="וואטסאפ: 052-727-5904" data-en="WhatsApp: 052-727-5904">וואטסאפ: 052-727-5904</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL -->
   <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
     <div class="modal" id="modal">
       <div class="modal-header">
@@ -839,11 +754,10 @@
   <div class="toast" id="toast"></div>
 
   <footer>
-    <p>KefList © 2025 · <a href="mailto:ruthieabraham@gmail.com">צור קשר</a></p>
+    <p>KefList © 2025 · <a href="#" onclick="showPage('about')">אודות</a> · <a href="mailto:ruthieabraham@gmail.com">צור קשר</a></p>
   </footer>
 
   <script>
-    // ── CONFIG — no token here, all handled by Netlify function ──
     const AIRTABLE_URL = '/.netlify/functions/listings';
 
     let allListings = [];
@@ -1069,7 +983,6 @@
         'Contact Name': document.getElementById('f-contact-name').value,
         'Contact Email': document.getElementById('f-email').value,
         'Contact Phone': document.getElementById('f-phone').value,
-        'Website': document.getElementById('f-website').value,
         'Status': 'Approved',
         'Submitted At': new Date().toISOString().split('T')[0]
       };
